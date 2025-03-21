@@ -1,6 +1,7 @@
 require("dotenv").config();
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 import { GoogleGenAI } from "@google/genai";
+import { getSystemPrompt } from "./prompt";
 
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
 
@@ -15,7 +16,8 @@ async function main() {
     try {
         const response = await ai.models.generateContentStream({
             model: "gemini-2.0-flash-001",
-            contents: [{ role: "user", parts: [{ text: "Create a simple TODO app" }] }],
+            contents: [{ role: "system", parts: [{ text: getSystemPrompt() }] },
+                { role: "user", parts: [{ text: "Create a simple TODO app" }] }],
         });
 
         for await (const chunk of response) {
