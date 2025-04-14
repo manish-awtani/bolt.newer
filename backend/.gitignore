@@ -1,7 +1,10 @@
 .env
 node_modules/
+# node_modules\
 node_modules/@types/node/
 lib*.d.ts
+lib.*
+lib.d.ts
 *.tsserver
 *_tsserver.js
 # Logs
@@ -17,6 +20,7 @@ node_modules
 dist
 dist-ssr
 *.local
+
 
 # Editor directories and files
 .vscode/*
