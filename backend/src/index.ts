@@ -53,7 +53,9 @@ console.log(response.candidates?.[0]?.content?.parts?.[0]?.text);
         }
         if (answer === "node" || answer == "node\n") {
             res.json({
+                // this needs to get forwaded to LLM
                 prompts: [`Here is an artifact that contains all files of the project visible to you.\nConsider the contents of ALL files in the project.\n\n${reactBasePrompt}\n\nHere is a list of files that exist on the file system but are not being shown to you:\n\n  - .gitignore\n  - package-lock.json\n`],
+                // this needs to be parsed by the UI, so that UI can start to build the initial project // the UI needs to see this and render all of these files in a web container.
                 uiPrompts: [nodeBasePrompt]
             })
             return; 
