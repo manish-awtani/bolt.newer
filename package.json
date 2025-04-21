@@ -1,5 +1,8 @@
 {
   "devDependencies": {
     "@types/node": "^22.13.11"
+  },
+  "dependencies": {
+    "@monaco-editor/react": "^4.7.0"
   }
 }
