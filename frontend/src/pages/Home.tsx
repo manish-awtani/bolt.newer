@@ -24,6 +24,14 @@ const Home = () => {
   return (
     <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-neutral-100 to-gray-300 dark:from-gray-900 dark:to-black transition-all duration-300">
       <div className="absolute top-4 right-4">
+        <button
+          onClick={() => setIsDarkMode(!isDarkMode)}
+          className="px-3 py-2 rounded-md text-sm font-medium bg-gray-200 dark:bg-gray-700 dark:text-white text-gray-900"
+        >
+          Toggle {isDarkMode ? "Light" : "Dark"} Mode
+        </button>
+      </div>
+      <div className="max-w-2xl w-full">
         <div className="text-center mb-8">
           <div className="flex justify-center mb-4">
             <Wand2 className="w-12 h-12 text-blue-400" />
