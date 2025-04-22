@@ -12,7 +12,7 @@ import { parseXml } from "../steps";
 import { useWebContainer } from "../hooks/useWebContainer";
 import { FileNode } from "@webcontainer/api";
 import { Loader } from "../components/Loader";
-import FileExplorer from "../components/FIleExplorer";
+import FileExplorer from "../components/FileExplorer";
 import { TabView } from "../components/TabView";
 import { CodeEditor } from "../components/CodeEditor";
 import { PreviewFrame } from "../components/PreviewFrame";

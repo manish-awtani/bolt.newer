@@ -1,13 +1,18 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import { Wand2 } from "lucide-react";
-// import { BACKEND_URL } from "../config";
+import axios from "axios";
+import { BACKEND_URL } from "../config";
 
 const Home = () => {
   const [prompt, setPrompt] = useState("");
+    const [isDarkMode, setIsDarkMode] = useState(true);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    document.documentElement.classList.toggle("dark", isDarkMode);
+  }, [isDarkMode]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -17,8 +22,8 @@ const Home = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 flex items-center justify-center p-4">
-      <div className="max-w-2xl w-full">
+    <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-neutral-100 to-gray-300 dark:from-gray-900 dark:to-black transition-all duration-300">
+      <div className="absolute top-4 right-4">
         <div className="text-center mb-8">
           <div className="flex justify-center mb-4">
             <Wand2 className="w-12 h-12 text-blue-400" />
