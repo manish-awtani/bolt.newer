@@ -10,5 +10,5 @@ npx ts-node src/index.ts
 For running the frontend:
 ```bash
 cd frontend
-npx run dev
+npm run dev
 ```

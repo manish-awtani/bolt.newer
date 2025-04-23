@@ -158,11 +158,11 @@ const Builder = () => {
   }, [files, webcontainer]);
 
   async function init() {
+    console.log('Manish')   
     const response = await axios.post(`${BACKEND_URL}/template`, {
       prompt: prompt.trim(),
     });
     setTemplateSet(true);
-
     const { prompts, uiPrompts } = response.data;
 
     setSteps(
@@ -176,7 +176,7 @@ const Builder = () => {
     const stepsResponse = await axios.post(`${BACKEND_URL}/chat`, {
       messages: [...prompts, prompt].map((content) => ({
         role: "user",
-        content,
+        "parts": [{ "text": content }] ,
       })),
     });
 
