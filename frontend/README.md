@@ -1,5 +1,3 @@
-For running the backend 
-npx ts-node src/index.ts
 
 # React + TypeScript + Vite
 
