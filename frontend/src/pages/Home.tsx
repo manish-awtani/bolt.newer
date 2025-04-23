@@ -9,8 +9,8 @@ import { useTheme } from "../components/ThemeContext";
 const Home = () => {
   const [prompt, setPrompt] = useState("");
   const navigate = useNavigate();
-    const { theme, toggleTheme } = useTheme();
 
+  const { theme, toggleTheme } = useTheme();
 
   // useEffect(() => {
   //   document.documentElement.classList.toggle("dark", isDarkMode);
@@ -25,13 +25,10 @@ const Home = () => {
   };
 
   return (
+    
     <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-neutral-100 to-gray-300 dark:from-gray-900 dark:to-black transition-all duration-300">
       <div className="absolute top-4 right-4">
         <button
-          // onClick={() => {setIsDarkMode(!isDarkMode)
-
-          // }
-          // }
           onClick={toggleTheme}
           className="px-3 py-2 rounded-md text-sm font-medium bg-gray-200 dark:bg-gray-700 dark:text-white text-gray-900"
         >

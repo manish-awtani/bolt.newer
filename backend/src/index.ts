@@ -1,5 +1,7 @@
 require("dotenv").config();
 import express from "express";
+const cors = require("cors"); 
+
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 import { GoogleGenAI } from "@google/genai";
 import { BASE_PROMPT, getSystemPrompt } from "./prompt";
@@ -15,7 +17,7 @@ if (!GEMINI_API_KEY) {
 
 const ai = new GoogleGenAI({ apiKey: GEMINI_API_KEY });
 // const ai = new GoogleGenerativeAI(GEMINI_API_KEY);
-const cors = require('cors')
+// const cors = require('cors')
 const app = express();
 app.use(cors());
 app.use(express.json());

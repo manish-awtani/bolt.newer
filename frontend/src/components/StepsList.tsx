@@ -21,7 +21,9 @@ export function StepsList({ steps, currentStep, onStepClick }: StepsListProps) {
                 ? "bg-gray-800 border border-gray-700"
                 : "hover:bg-gray-800"
             }`}
-            onClick={() => onStepClick(step.id)}
+            onClick={() => {
+              console.log('---->--->--->--->', step,step.id )
+              onStepClick(step.id)}}
           >
             <div className="flex items-center gap-2">
               {step.status === "completed" ? (
