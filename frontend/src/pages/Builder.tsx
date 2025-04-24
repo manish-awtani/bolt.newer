@@ -165,6 +165,7 @@ const Builder = () => {
     setTemplateSet(true);
     const { prompts, uiPrompts } = response.data;
 
+    console.log("ManishManish", prompts, uiPrompts);   
     setSteps(
       parseXml(uiPrompts[0]).map((x: Step) => ({
         ...x,
