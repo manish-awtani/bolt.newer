@@ -12,31 +12,72 @@ export function PreviewFrame({ files, webContainer }: PreviewFrameProps) {
   // In a real implementation, this would compile and render the preview
   const [url, setUrl] = useState("");
 
-  async function main() {
-    const installProcess = await webContainer.spawn("npm", ["install"]);
+  // async function main() {
+  //   const installProcess = await webContainer.spawn("npm", ["install"]);
 
-    installProcess.output.pipeTo(
+  //   installProcess.output.pipeTo(
+  //     new WritableStream({
+  //       write(data) {
+  //         console.log(data);
+  //       },
+  //     })
+  //   );
+
+  //   await webContainer.spawn("npm", ["run", "dev"]);
+
+  //   // Wait for `server-ready` event
+  //   webContainer.on("server-ready", (port, url) => {
+  //     // ...
+  //     console.log(url);
+  //     console.log(port);
+  //     setUrl(url);
+  //   });
+  // }
+
+  // useEffect(() => {
+  //   main();
+  // }, []);
+
+  async function startServer() {
+    // Install dependencies
+    const install = await webContainer.spawn("npm", ["install"]);
+
+    install.output.pipeTo(
       new WritableStream({
         write(data) {
-          console.log(data);
+          console.log("[install]", data);
         },
       })
     );
 
-    await webContainer.spawn("npm", ["run", "dev"]);
+    const exitCode = await install.exit;
+    if (exitCode !== 0) {
+      console.error("npm install failed");
+      return;
+    }
 
-    // Wait for `server-ready` event
+    // Start dev server
+    const server = await webContainer.spawn("npm", ["run", "dev"]);
+
+    server.output.pipeTo(
+      new WritableStream({
+        write(data) {
+          console.log("[server]", data);
+        },
+      })
+    );
+
+    // Listen for server ready
     webContainer.on("server-ready", (port, url) => {
-      // ...
-      console.log(url);
-      console.log(port);
+      console.log("Server Ready at:", url);
       setUrl(url);
     });
   }
 
   useEffect(() => {
-    main();
+    startServer();
   }, []);
+  
   return (
     <div className="h-full flex items-center justify-center text-gray-400">
       {!url && (
